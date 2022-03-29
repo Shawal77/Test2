@@ -4,6 +4,7 @@ studentSurname=input('What is your surname? ').capitalize()
 # lets get courses in semester 1
 coursesSemesterOne={'Engineering Maths 1':4,'Introduction to Electrical Engineering':3,'Physical Electronics':4,'Circuit Theory':4,'Communication Skills':2,'Information Computer technology':3}
 coursesSemesterTwo={'EMT2':4,'EM':4,'Stat':2,'CMP':4,'DE':4,'Soc':3}
+b=list(coursesSemesterOne.values())
 #we sum credit units
 sumOfCreditUnitsSemesterOne=sum(list(coursesSemesterOne.values()))
 sumOfCreditUnitsSemesterTwo=sum(list(coursesSemesterTwo.values()))
@@ -11,10 +12,10 @@ sumOfCreditUnitsSemesterTwo=sum(list(coursesSemesterTwo.values()))
 gradePointsSemesterOne={}
 letterGradeSemesterOne={}
 for value in coursesSemesterOne:
-    print(f'What is your mark in {value}? ',end=' : ')
+    print(f'What is your mark in {value}? ',end=': ')
     studentMark=int(input())
     if studentMark<=100 and studentMark>=80:
-        gradePoint=5,
+        gradePoint=5
         letterGrade='A'
     elif studentMark>=70:
         gradePoint=4.5
@@ -26,7 +27,7 @@ for value in coursesSemesterOne:
         gradePoint=3.5
         letterGrade='C+'
     elif studentMark>=40:
-        gradePoint=3.0,
+        gradePoint=3.0
         letterGrade='C'
     elif studentMark>=30:
         gradePoint=2.5
@@ -49,7 +50,7 @@ for value in coursesSemesterTwo:
     print(f'What is your mark in {value}? ',end=' : ')
     studentMark=int(input())
     if studentMark<=100 and studentMark>=80:
-        gradePoint=5,
+        gradePoint=5
         letterGrade='A'
     elif studentMark>=70:
         gradePoint=4.5
@@ -61,7 +62,7 @@ for value in coursesSemesterTwo:
         gradePoint=3.5
         letterGrade='C+'
     elif studentMark>=40:
-        gradePoint=3.0,
+        gradePoint=3.0
         letterGrade='C'
     elif studentMark>=30:
         gradePoint=2.5
@@ -108,13 +109,13 @@ print(tabulate(
     list(gradePointsSemesterOne.items()),
     tablefmt='fancy_grid'
 ))
-print(f'You had a {degreeClassSemesterOne}\nYour grade point average was ',end='')
+print(f'Semester one you had a {degreeClassSemesterOne}\nYour grade point average was ',end='')
 print('%.2f'%GPA1,end='. \n')
 print(tabulate(
     list(gradePointsSemesterTwo.items()),
     tablefmt='fancy_grid'
 ))
-print(f'You had a {degreeClassSemesterTwo}\nYour grade point average is ',end='')
+print(f'Semester two you had a {degreeClassSemesterTwo}\nYour grade point average is ',end='')
 print('%.2f'%GPA1,end='. \n')
-print(f'Dear {studentFirstName} {studentSurname}, you have a {degreeClassSemesterOne}\nYour grade point average is ',end='')
+print(f'\n \n \nDear {studentFirstName} {studentSurname},\n you have a {degreeClassSemesterOne}\nYour grade point average is ',end='')
 print('%.2f'%GPA1,end='. \n')

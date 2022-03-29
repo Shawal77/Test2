@@ -19,8 +19,10 @@ for value in coursesSemesterOne:
     print(f'What is your mark in {value}? ',end=' : ')
     studentMark=int(input())
     if studentMark<=100 and studentMark>=80:gradePoint=5
-    elif studentMark>=70:gradePoint=4.5
-    elif studentMark>=60:gradePoint=4.0
+    elif studentMark>=70:
+        gradePoint=4.5
+    elif studentMark>=60:
+        gradePoint=4.0
     elif studentMark>=50:gradePoint=3.5
     elif studentMark>=40:gradePoint=3.0
     elif studentMark>=30:gradePoint=2.5
@@ -32,7 +34,7 @@ for value in coursesSemesterOne:
 def GPAGetter(dictionary,gradePointsSemesterX):
     weightedScores=[]
     for x in range(len(dictionary)):
-        weightedScore=list(coursesSemesterOne.values())[x]*list(gradePointsSemesterX.values())[x]
+        weightedScore=list(dictionary.values())[x]*list(gradePointsSemesterX.values())[x]
         weightedScores.append(weightedScore)
     totalWeightedScore=sum(weightedScores)
     CGPA=totalWeightedScore/sumOfCreditUnits
@@ -49,7 +51,7 @@ gradePointsSemesterOne['CGPA']=CGPA
 print(tabulate(
     list(gradePointsSemesterOne.items()),
     showindex='always',
-    headers=['Course units','Grade points'],
+    headers=['Course units','Grade points','frggg'],
     tablefmt='fancy_grid'
 ))
 print(f'Dear {studentFirstName} {studentSurname}, you have a {degreeClass}\nYour Cumulative grade point average is ',end='')
