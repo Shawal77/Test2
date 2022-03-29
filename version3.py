@@ -4,13 +4,13 @@ studentSurname=input('What is your surname? ').capitalize()
 # lets get courses in semester 1
 coursesSemesterOne={'Engineering Maths 1':4,'Introduction to Electrical Engineering':3,'Physical Electronics':4,'Circuit Theory':4,'Communication Skills':2,'Information Computer technology':3}
 coursesSemesterTwo={'EMT2':4,'EM':4,'Stat':2,'CMP':4,'DE':4,'Soc':3}
-b=list(coursesSemesterOne.values())
 #we sum credit units
 sumOfCreditUnitsSemesterOne=sum(list(coursesSemesterOne.values()))
 sumOfCreditUnitsSemesterTwo=sum(list(coursesSemesterTwo.values()))
 #we get grades points and pair then with the courses
 gradePointsSemesterOne={}
 letterGradeSemesterOne={}
+percentMarksSemesterOne={}
 for value in coursesSemesterOne:
     print(f'What is your mark in {value}? ',end=': ')
     studentMark=int(input())
@@ -43,9 +43,11 @@ for value in coursesSemesterOne:
         letterGrade='E'
     gradePointsSemesterOne[value]= gradePoint
     letterGradeSemesterOne[value]= letterGrade
+    percentMarksSemesterOne[value]=studentMark
 #we get grades points and pair then with the courses
 gradePointsSemesterTwo={}
 letterGradeSemesterTwo={}
+percentMarksSemesterTwo={}
 for value in coursesSemesterTwo:
     print(f'What is your mark in {value}? ',end=' : ')
     studentMark=int(input())
@@ -78,6 +80,7 @@ for value in coursesSemesterTwo:
         letterGrade='E'
     gradePointsSemesterTwo[value]= gradePoint
     letterGradeSemesterTwo[value]= letterGrade
+    percentMarksSemesterTwo[value]=studentMark
 #we calculate the CGPA
 def GPAGetter(coursesdictionary,gradePointsSemesterX,sumOfCreditUnits):
     weightedScores=[]
@@ -102,20 +105,28 @@ degreeClassSemesterOne=DegreeGetter(GPA1)
 degreeClassSemesterTwo=DegreeGetter(GPA2)
 degreeClassOverall=DegreeGetter(CGPA)
 #we print the output
-gradePointsSemesterOne['G.P.A 1']=GPA1
-gradePointsSemesterTwo['G.P.A 2']=GPA2
 #we want [course,gradepoint,letterGrade,]
+print('\n\nSemester One results')
+semOneResults=[]
+for value in coursesSemesterOne:
+    list1=[value,coursesSemesterOne[value],percentMarksSemesterOne[value],gradePointsSemesterOne[value],letterGradeSemesterOne[value]]
+    semOneResults.append(list1)
 print(tabulate(
-    list(gradePointsSemesterOne.items()),
-    tablefmt='fancy_grid'
-))
-print(f'Semester one you had a {degreeClassSemesterOne}\nYour grade point average was ',end='')
+    semOneResults,
+    headers=['Course units','Credit units','Percentages','Grade Points','Letter'],
+    tablefmt='fancy_grid'))
+print(f'GRade point average: ',end='')
 print('%.2f'%GPA1,end='. \n')
+print('\nSemester two results')
+semTwoResults=[]
+for value in coursesSemesterTwo:
+    list2=[value,coursesSemesterTwo[value],percentMarksSemesterTwo[value],gradePointsSemesterTwo[value],letterGradeSemesterTwo[value]]
+    semTwoResults.append(list2)
 print(tabulate(
-    list(gradePointsSemesterTwo.items()),
-    tablefmt='fancy_grid'
-))
-print(f'Semester two you had a {degreeClassSemesterTwo}\nYour grade point average is ',end='')
-print('%.2f'%GPA1,end='. \n')
-print(f'\n \n \nDear {studentFirstName} {studentSurname},\n you have a {degreeClassSemesterOne}\nYour grade point average is ',end='')
-print('%.2f'%GPA1,end='. \n')
+    semTwoResults,
+    headers=['Course units','Percentages','Credit units','Grade Points','Letter'],
+    tablefmt='fancy_grid'))
+print(f'GRade point average: ',end='')
+print('%.2f'%GPA2,end='. \n')
+print(f'\n \nDear {studentFirstName} {studentSurname}, \nYou have a {degreeClassOverall}\nYour Cumulative grade point average is ',end='')
+print('%.2f'%CGPA,end='. \n\n')
